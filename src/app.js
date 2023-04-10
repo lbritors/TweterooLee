@@ -25,10 +25,16 @@ app.post("/sign-up", (req, res) => {
 
 app.post("/tweets", (req, res) =>{
     const {username, tweet} = req.body;
+    const body = req.body;
+    const tweetExists = body.hasOwnProperty("tweet");
+    console.log(tweetExists);
     const userExists = user.find(u => u.username === username);
     if(!userExists) {
         return res.status(401).send("UNAUTHORIZED");
-    }  
+    }
+    if(tweet === "" || tweetExists === false) {
+        res.status(400).send("Todos os dados são obrigatórios!");
+    } 
     const newTweet = {username, tweet};
     tweets.push(newTweet);
     return res.status(201).send("OK");
