@@ -50,4 +50,6 @@ app.get("/tweets", (req, res) => {
 });
 
 
-app.listen(5000, "localhost");
+app.listen(5000, () => {
+    console.log("localhost");
+});
