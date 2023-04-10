@@ -32,7 +32,7 @@ app.post("/tweets", (req, res) =>{
     if(!userExists) {
         return res.status(401).send("UNAUTHORIZED");
     }
-    if(tweet === "" || tweetExists === false) {
+    if(tweet === "" || tweetExists === false || typeof tweet !== "string") {
         res.status(400).send("Todos os dados são obrigatórios!");
     } 
     const newTweet = {username, tweet};
